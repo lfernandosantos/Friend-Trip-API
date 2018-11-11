@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.friendtrip.api.dto.CoordinateDto;
 import com.friendtrip.api.dto.TripDto;
 import com.friendtrip.api.dto.UserDto;
+import com.friendtrip.api.entities.User;
+import com.friendtrip.api.repositories.UserRepository;
 import com.friendtrip.api.responses.Response;
 import com.friendtrip.api.utils.ConstantPaths;
 
 @RestController
 @RequestMapping(ConstantPaths.API.V1.URL_API_VERSION)
 public class RegisterController {
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@PostMapping(ConstantPaths.API.URL_REGISTER)
 	public ResponseEntity<Response<UserDto>> registerUser(@Valid @RequestBody UserDto user, BindingResult result) {
@@ -35,8 +41,14 @@ public class RegisterController {
 		}
 		
 		//TODO: generete automatic by database
-		user.setId(1L);
-		response.setData(user);
+		
+		User userEntity = new User();
+		
+		userEntity.setFacebookID(user.getFacebookID());
+		userEntity.setName(user.getName());
+		System.out.println(userEntity.toString());
+		
+		userRepository.save(userEntity);
 		
 		return ResponseEntity.ok(response);
 	}
