@@ -41,7 +41,6 @@ public class RegisterController {
 		}
 		
 		//TODO: generete automatic by database
-		
 		User userEntity = new User();
 		
 		userEntity.setFacebookID(user.getFacebookID());
