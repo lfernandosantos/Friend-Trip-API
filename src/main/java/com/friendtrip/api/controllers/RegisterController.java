@@ -38,18 +38,26 @@ public class RegisterController {
 		if( result.hasErrors()) {
 			result.getAllErrors().forEach( error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
+		} else {
+			
+			User userEntity = new User();
+			
+			userEntity.setFacebookID(user.getFacebookID());
+			userEntity.setName(user.getName());
+			System.out.println(userEntity.toString());
+			
+			userRepository.save(userEntity);
+			
+			User userSaved = userRepository.findByFacebookID(user.getFacebookID());
+			
+			user.setId(userSaved.getId());
+			user.setFacebookID(userSaved.getFacebookID());
+			user.setName(userSaved.getName());
+			
+			response.setData(user);
+			
+			return ResponseEntity.ok(response);
 		}
-		
-		//TODO: generete automatic by database
-		User userEntity = new User();
-		
-		userEntity.setFacebookID(user.getFacebookID());
-		userEntity.setName(user.getName());
-		System.out.println(userEntity.toString());
-		
-		userRepository.save(userEntity);
-		
-		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping(ConstantPaths.API.URL_CREATE_TRIP)

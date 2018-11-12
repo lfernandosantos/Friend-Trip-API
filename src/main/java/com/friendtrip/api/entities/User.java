@@ -8,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 644698682163034071L;
