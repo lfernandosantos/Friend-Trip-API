@@ -11,8 +11,8 @@ public class TripDto {
 	private String date;
 	private String description;
 	private String status;
-	private Long idCreator;
-	private List<Long> followers;
+	private String creator;
+	private List<String> followers;
 	//private List<String> tags;
 	public Long getId() {
 		return id;
@@ -56,16 +56,16 @@ public class TripDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Long getIdCreator() {
-		return idCreator;
+	public String getCreator() {
+		return creator;
 	}
-	public void setIdCreator(Long idCreator) {
-		this.idCreator = idCreator;
+	public void setCreator(String idCreator) {
+		this.creator = idCreator;
 	}
-	public List<Long> getFollowers() {
+	public List<String> getFollowers() {
 		return followers;
 	}
-	public void setFollowers(List<Long> followers) {
+	public void setFollowers(List<String> followers) {
 		this.followers = followers;
 	}
 
