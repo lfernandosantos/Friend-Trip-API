@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Response<T> {
+	private int statusCode;
+	private String msg;
 	private T data;
 	private List<String> errors;
 	
@@ -17,6 +19,24 @@ public class Response<T> {
 
 	public void setData(T data) {
 		this.data = data;
+	}
+
+	
+	public int getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(int statusCode) {
+		this.statusCode = statusCode;
+	}
+	
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 	public List<String> getErrors() {
