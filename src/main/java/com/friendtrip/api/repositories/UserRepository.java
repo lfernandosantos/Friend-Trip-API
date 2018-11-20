@@ -9,6 +9,6 @@ import com.friendtrip.api.entities.User;
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	User findByFacebookID(String facebookID);
+	User findByFacebookID(String facebookId);
 
 }
