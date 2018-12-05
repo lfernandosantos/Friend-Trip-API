@@ -56,7 +56,7 @@ public class RegisterController {
 			System.out.println(isSaved);
 			if(isSaved != null) {
 				response.setStatusCode(ConstantMessages.Response.StatusCode.ALREADY_REGISTERED);
-				response.setMsg(ConstantMessages.Response.Message.ALREADY_SAVE);
+				response.setMsg(ConstantMessages.Response.Message.USER_ALREADY_SAVE);
 			
 				return ResponseEntity.ok(response);	
 			}
@@ -81,7 +81,7 @@ public class RegisterController {
 			user.setName(userSaved.getName());
 
 			response.setStatusCode(ConstantMessages.Response.StatusCode.SAVED_SUCCESSFULLY);
-			response.setMsg(ConstantMessages.Response.Message.SAVED_SUCCESS);
+			response.setMsg(ConstantMessages.Response.Message.USER_SAVED_SUCCESS);
 			response.setData(user);
 			
 			return ResponseEntity.ok(response);
@@ -110,10 +110,12 @@ public class RegisterController {
 		
 		this.tripRepository.save(tripEntity);
 		
-		Trip tripSaved = this.tripRepository.findByName(tripEntity.getName());
+		//Trip tripSaved = this.tripRepository.findByName(tripEntity.getName());
 		
-		trip.setId(tripSaved.getId());
-		response.setData(trip);
+		//trip.setId(tripSaved.getId());
+		response.setStatusCode(ConstantMessages.Response.StatusCode.SAVED_SUCCESSFULLY);
+		response.setMsg(ConstantMessages.Response.Message.TRIP_SAVED_SUCCESS);
+		//response.setData(trip);
 		
 		return ResponseEntity.ok(response);
 	}
